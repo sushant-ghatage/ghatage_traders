@@ -27,6 +27,29 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Add scroll animation to elements
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe product cards and about cards
+    document.querySelectorAll('.product-card, .about-card, .product-category').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
+
     // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
@@ -51,14 +74,23 @@ document.addEventListener('DOMContentLoaded', function() {
                 `Message:\n${formData.message}`
             );
             
-            // Show success message
-            alert('Thank you for your message! We will contact you soon.\n\nFor now, this form opens your email client. In a production environment, this would be connected to a backend server.');
+            // Show success message with better UX
+            const submitBtn = contactForm.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span>✓ Message Sent!</span>';
+            submitBtn.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Thank you for your message! We will contact you soon.\n\nFor now, this form opens your email client. In a production environment, this would be connected to a backend server.');
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+                contactForm.reset();
+            }, 2000);
             
             // Open email client (optional)
             // window.location.href = `mailto:info@ghatagetraders.com?subject=${subject}&body=${body}`;
-            
-            // Reset form
-            contactForm.reset();
         });
     }
 });
