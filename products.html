@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Ghatage Traders</title>
+    <title>Products - Ghatage Traders | Stationary, Toys, Gifts & More</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,17 +31,122 @@
     <!-- Main Content -->
     <main class="main-content">
         <section class="page-header">
-            <h1 class="page-title">Our Products</h1>
-            <p class="page-subtitle">Quality products for your home and business needs</p>
+            <h1 class="page-title">🛍️ Our Products</h1>
+            <p class="page-subtitle">Everything you need - From Stationary to Toys, Gifts & More!</p>
         </section>
 
         <!-- Product Categories -->
         <section class="products-section">
-            <!-- Household Plastic Items -->
-            <div class="product-category">
+            <!-- Stationary -->
+            <div class="product-category" id="stationary">
                 <div class="category-header">
+                    <img src="images/stationary.svg" alt="Stationary" class="category-icon-img">
+                    <h2>📝 Stationary</h2>
+                </div>
+                <div class="category-content">
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h3>Notebooks & Books</h3>
+                            <p>Wide variety of notebooks, exercise books, drawing books, and study materials for all classes.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Pens & Pencils</h3>
+                            <p>Ball pens, gel pens, fountain pens, pencils, colored pencils, and markers from top brands.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Geometry Boxes</h3>
+                            <p>Complete geometry sets with compass, protractor, ruler, and all essential tools for students.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>School Bags</h3>
+                            <p>Stylish and durable school bags, backpacks, and trolley bags for students of all ages.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Art Supplies</h3>
+                            <p>Watercolors, crayons, sketch pens, paint brushes, and all art materials for creative minds.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Office Supplies</h3>
+                            <p>Files, folders, staplers, paper clips, sticky notes, and all office essentials.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Toys & Games -->
+            <div class="product-category" id="toys">
+                <div class="category-header">
+                    <div class="category-icon">🧸🎮</div>
+                    <h2>🧸 Toys & Games</h2>
+                </div>
+                <div class="category-content">
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h3>Action Figures & Dolls</h3>
+                            <p>Popular action figures, superhero toys, Barbie dolls, and character toys for kids.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Board Games</h3>
+                            <p>Chess, Ludo, Snakes & Ladders, Monopoly, and educational board games for family fun.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Puzzles & Building Blocks</h3>
+                            <p>Jigsaw puzzles, LEGO-style building blocks, and construction toys for creative play.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Educational Toys</h3>
+                            <p>STEM toys, science kits, learning games, and educational toys for smart kids.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Outdoor Toys</h3>
+                            <p>Bicycles, scooters, balls, skipping ropes, and outdoor play equipment.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Soft Toys</h3>
+                            <p>Cuddly teddy bears, plush toys, and soft toys perfect for gifts and comfort.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gifts -->
+            <div class="product-category" id="gifts">
+                <div class="category-header">
+                    <div class="category-icon">🎁🎈</div>
+                    <h2>🎁 Gifts</h2>
+                </div>
+                <div class="category-content">
+                    <div class="product-list">
+                        <div class="product-item">
+                            <h3>Birthday Gifts</h3>
+                            <p>Perfect birthday gift sets, party supplies, balloons, and celebration items.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Festival Gifts</h3>
+                            <p>Special gifts for Diwali, Christmas, New Year, and other festivals.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Gift Sets</h3>
+                            <p>Curated gift sets, hampers, and combo packs for all occasions.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Decorative Items</h3>
+                            <p>Home decor items, photo frames, showpieces, and decorative accessories.</p>
+                        </div>
+                        <div class="product-item">
+                            <h3>Personalized Gifts</h3>
+                            <p>Customized gifts, name plates, and personalized items for special moments.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Household Plastic Items -->
+            <div class="product-category" id="household">
+            <div class="product-category">
+                    <div class="category-header">
                     <div class="category-icon">🪣</div>
-                    <h2>Household Plastic Items</h2>
+                    <h2>🏠 Household Plastic Items</h2>
                 </div>
                 <div class="category-content">
                     <div class="product-list">
@@ -74,10 +179,11 @@
             </div>
 
             <!-- Puja Sahitya -->
-            <div class="product-category">
+            <div class="product-category" id="puja">
                 <div class="category-header">
-                    <div class="category-icon">🕉️</div>
-                    <h2>Puja Sahitya</h2>
+                    <img src="images/puja-sahitya.jpg" alt="Puja Sahitya" class="category-icon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <div class="category-icon" style="display:none;">🕉️</div>
+                    <h2>🕉️ Puja Sahitya</h2>
                 </div>
                 <div class="category-content">
                     <div class="product-list">
@@ -106,17 +212,13 @@
             </div>
 
             <!-- Kitchen Appliances -->
-            <div class="product-category">
+            <div class="product-category" id="kitchen">
                 <div class="category-header">
                     <div class="category-icon">🍳</div>
-                    <h2>Kitchen Appliances</h2>
+                    <h2>🍳 Kitchen Appliances</h2>
                 </div>
                 <div class="category-content">
                     <div class="product-list">
-                        <div class="product-item">
-                            <h3>Refrigerators</h3>
-                            <p>Single door and double door refrigerators in various sizes and colors from leading brands.</p>
-                        </div>
                         <div class="product-item">
                             <h3>Gas Stoves</h3>
                             <p>Modern gas stoves with 2, 3, and 4 burners, featuring safety features and elegant designs.</p>
@@ -142,10 +244,10 @@
             </div>
 
             <!-- Atta Chakki -->
-            <div class="product-category">
+            <div class="product-category" id="chakki">
                 <div class="category-header">
                     <div class="category-icon">🌾</div>
-                    <h2>Atta Chakki (Flour Mills)</h2>
+                    <h2>🌾 Atta Chakki (Flour Mills)</h2>
                 </div>
                 <div class="category-content">
                     <div class="product-list">
