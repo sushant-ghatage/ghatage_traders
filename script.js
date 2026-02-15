@@ -62,14 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add parallax effect to header
-    let lastScroll = 0;
+    // Add scroll effect to navbar
     window.addEventListener('scroll', function() {
-        const header = document.querySelector('.header');
-        if (header) {
-            const scrolled = window.pageYOffset;
-            const rate = scrolled * 0.5;
-            header.style.transform = `translateY(${rate}px)`;
+        const navbar = document.querySelector('.navbar');
+        if (navbar) {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
         }
     });
 
