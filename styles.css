@@ -14,15 +14,25 @@
     --white: #FFFFFF;
     --text-dark: #1F2937;
     --text-gray: #4B5563;
+    /* Playful Colors */
+    --pink: #FF6B9D;
+    --blue: #4ECDC4;
+    --yellow: #FFE66D;
+    --green: #95E1D3;
+    --red: #FF6B6B;
+    --purple: #A8E6CF;
     --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --gradient-accent: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+    --gradient-hero: linear-gradient(135deg, #FF6B9D 0%, #4ECDC4 50%, #FFE66D 100%);
+    --gradient-stationary: linear-gradient(135deg, #FF6B9D 0%, #FFE66D 100%);
+    --gradient-toys: linear-gradient(135deg, #4ECDC4 0%, #95E1D3 100%);
+    --gradient-gifts: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
 }
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #FFE5F1 0%, #E0F7FA 50%, #FFF9C4 100%);
     background-attachment: fixed;
     min-height: 100vh;
     color: var(--text-dark);
@@ -40,22 +50,29 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(circle at 20% 50%, rgba(107, 70, 193, 0.08) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(249, 115, 22, 0.08) 0%, transparent 50%);
+        radial-gradient(circle at 20% 30%, rgba(255, 107, 157, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(78, 205, 196, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(255, 230, 109, 0.1) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
+    animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
 }
 
 /* Header Styles */
 .header {
     background: var(--gradient-hero);
-    padding: 5rem 2rem;
+    padding: 6rem 2rem;
     text-align: center;
     position: relative;
     overflow: hidden;
     margin-bottom: 3rem;
     border-radius: 0 0 50px 50px;
-    box-shadow: 0 20px 60px rgba(107, 70, 193, 0.3);
+    box-shadow: 0 20px 60px rgba(255, 107, 157, 0.3);
 }
 
 .header::before {
@@ -113,11 +130,59 @@ body::before {
 }
 
 .tagline {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: rgba(255, 255, 255, 0.95);
-    font-weight: 300;
-    letter-spacing: 2px;
+    font-weight: 400;
+    letter-spacing: 1px;
     text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.cta-button {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button.primary {
+    background: var(--white);
+    color: var(--pink);
+    border: 3px solid var(--white);
+}
+
+.cta-button.primary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--pink);
+    color: var(--white);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    color: var(--white);
+    border: 3px solid var(--white);
+}
+
+.cta-button.secondary:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--white);
+    color: var(--pink);
 }
 
 .decorative-shapes {
@@ -181,7 +246,24 @@ body::before {
 }
 
 .products-section {
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+    animation: bounce 2s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .products-grid {
@@ -238,19 +320,66 @@ body::before {
     overflow: hidden;
 }
 
-.product-card:nth-child(1) .product-image {
+/* Featured Cards with Badges */
+.product-card.featured-card {
+    border: 3px solid var(--pink);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 15px 35px rgba(255, 107, 157, 0.3); }
+    50% { box-shadow: 0 20px 45px rgba(255, 107, 157, 0.5); }
+}
+
+.product-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--gradient-accent);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    z-index: 10;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: wiggle 1s ease-in-out infinite;
+}
+
+@keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-5deg); }
+    75% { transform: rotate(5deg); }
+}
+
+/* Category-specific gradients */
+.product-card[data-category="stationary"] .product-image {
+    background: var(--gradient-stationary);
+}
+
+.product-card[data-category="toys"] .product-image {
+    background: var(--gradient-toys);
+}
+
+.product-card[data-category="gifts"] .product-image {
+    background: var(--gradient-gifts);
+}
+
+.product-card[data-category="puja"] .product-image {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 0;
+    overflow: hidden;
+}
+
+.product-card[data-category="household"] .product-image {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
-.product-card:nth-child(2) .product-image {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.product-card:nth-child(3) .product-image {
+.product-card[data-category="kitchen"] .product-image {
     background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
 }
 
-.product-card:nth-child(4) .product-image {
+.product-card[data-category="chakki"] .product-image {
     background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
 }
 
@@ -286,10 +415,36 @@ body::before {
     position: relative;
     filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
     transition: transform 0.4s ease;
+    animation: floatIcon 3s ease-in-out infinite;
+}
+
+@keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 .product-card:hover .product-icon {
-    transform: scale(1.1) rotate(5deg);
+    transform: scale(1.15) rotate(5deg);
+    animation: none;
+}
+
+.stationary-icon, .toys-icon, .gifts-icon {
+    font-size: 4.5rem;
+}
+
+.product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 2;
+    position: relative;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
+    transition: transform 0.4s ease;
+    border-radius: 10px;
+}
+
+.product-card:hover .product-img {
+    transform: scale(1.05);
 }
 
 .product-label {
@@ -341,6 +496,99 @@ body::before {
     line-height: 1.7;
     text-align: center;
     margin: 0;
+}
+
+.product-action {
+    padding: 1.5rem;
+    background: var(--white);
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.shop-btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: var(--gradient-hero);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 157, 0.3);
+}
+
+.shop-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.5);
+    background: var(--gradient-accent);
+}
+
+/* Special Offers Section */
+.offers-section {
+    margin: 4rem 0;
+    padding: 0 2rem;
+}
+
+.offer-banner {
+    background: var(--gradient-hero);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    text-align: center;
+    color: var(--white);
+    box-shadow: 0 20px 50px rgba(255, 107, 157, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.offer-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+    animation: rotate 15s linear infinite;
+}
+
+.offer-banner h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.offer-banner p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+    opacity: 0.95;
+}
+
+.offer-btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--white);
+    color: var(--pink);
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 1;
+}
+
+.offer-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--yellow);
+    color: var(--pink);
 }
 
 /* Footer Styles */
@@ -431,6 +679,32 @@ body::before {
     }
 
     .tagline {
+        font-size: 1.1rem;
+    }
+
+    .header-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .cta-button {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .offer-banner {
+        padding: 2rem 1.5rem;
+    }
+
+    .offer-banner h2 {
+        font-size: 1.8rem;
+    }
+
+    .offer-banner p {
         font-size: 1rem;
     }
 
@@ -700,6 +974,19 @@ html {
 
 .category-icon {
     font-size: 3rem;
+}
+
+.category-icon-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.category-header:hover .category-icon-img {
+    transform: scale(1.1);
 }
 
 .category-header h2 {

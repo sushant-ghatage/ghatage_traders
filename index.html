@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ghatage Traders - Wholesale and Retail Dealers</title>
+    <title>Ghatage Store - Stationary, Toys, Gifts & More | Shop Online</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="index.html" class="nav-logo">GHATAGE TRADERS</a>
+            <a href="index.html" class="nav-logo">🛍️ GHATAGE STORE</a>
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
                 <li><a href="products.html" class="nav-link">Products</a></li>
@@ -31,8 +31,12 @@
     <!-- Header Section -->
     <header class="header">
         <div class="header-content">
-            <h1 class="business-name">GHATAGE TRADERS</h1>
-            <p class="tagline">Wholesale and Retail Dealers</p>
+            <h1 class="business-name">🛍️ GHATAGE STORE</h1>
+            <p class="tagline">Your One-Stop Shop for Stationary, Toys, Gifts & More!</p>
+            <div class="header-buttons">
+                <a href="products.html" class="cta-button primary">Shop Now 🛒</a>
+                <a href="contact.html" class="cta-button secondary">Contact Us 📞</a>
+            </div>
         </div>
         <div class="decorative-shapes">
             <div class="shape shape-left"></div>
@@ -45,58 +49,132 @@
     <main class="main-content">
         <!-- Product Categories Section -->
         <section class="products-section">
+            <h2 class="section-title">✨ Explore Our Categories ✨</h2>
             <div class="products-grid">
-                <!-- Household Plastic Items -->
-                <div class="product-card">
+                <!-- Stationary -->
+                <div class="product-card featured-card" data-category="stationary">
+                    <div class="product-badge">NEW!</div>
                     <div class="product-image">
-                        <div class="product-icon plastic-icon">🪣</div>
+                        <div class="product-icon stationary-icon">✏️📚</div>
                     </div>
                     <div class="product-label">
-                        <h3>Household Plastic Items</h3>
+                        <h3>📝 Stationary</h3>
                     </div>
                     <div class="product-description">
-                        <p>Wide range of plastic household essentials including bowls, containers, buckets, baskets, and more</p>
+                        <p>Complete range of school supplies - notebooks, pens, pencils, erasers, geometry boxes, bags, and more for students!</p>
+                    </div>
+                    <div class="product-action">
+                        <a href="products.html#stationary" class="shop-btn">Shop Now →</a>
+                    </div>
+                </div>
+
+                <!-- Toys & Games -->
+                <div class="product-card featured-card" data-category="toys">
+                    <div class="product-badge">POPULAR!</div>
+                    <div class="product-image">
+                        <div class="product-icon toys-icon">🧸🎮</div>
+                    </div>
+                    <div class="product-label">
+                        <h3>🧸 Toys & Games</h3>
+                    </div>
+                    <div class="product-description">
+                        <p>Fun toys, educational games, puzzles, action figures, dolls, board games, and more for children of all ages!</p>
+                    </div>
+                    <div class="product-action">
+                        <a href="products.html#toys" class="shop-btn">Shop Now →</a>
+                    </div>
+                </div>
+
+                <!-- Gifts -->
+                <div class="product-card featured-card" data-category="gifts">
+                    <div class="product-badge">SPECIAL!</div>
+                    <div class="product-image">
+                        <div class="product-icon gifts-icon">🎁🎈</div>
+                    </div>
+                    <div class="product-label">
+                        <h3>🎁 Gifts</h3>
+                    </div>
+                    <div class="product-description">
+                        <p>Perfect gifts for birthdays, festivals, and special occasions - gift sets, decorative items, and unique presents!</p>
+                    </div>
+                    <div class="product-action">
+                        <a href="products.html#gifts" class="shop-btn">Shop Now →</a>
                     </div>
                 </div>
 
                 <!-- Puja Sahitya -->
-                <div class="product-card">
+                <div class="product-card" data-category="puja">
                     <div class="product-image">
-                        <div class="product-icon puja-icon">🕉️</div>
+                        <img src="images/puja-sahitya.jpg" alt="Puja Sahitya - Traditional Hindu Religious Items" class="product-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="product-icon puja-icon" style="display:none;">🕉️</div>
                     </div>
                     <div class="product-label">
-                        <h3>Puja Sahitya</h3>
+                        <h3>🕉️ Puja Sahitya</h3>
                     </div>
                     <div class="product-description">
                         <p>Complete range of religious items including brass lamps, puja stands, kumkum containers, and traditional accessories</p>
                     </div>
+                    <div class="product-action">
+                        <a href="products.html#puja" class="shop-btn">Shop Now →</a>
+                    </div>
+                </div>
+
+                <!-- Household Plastic Items -->
+                <div class="product-card" data-category="household">
+                    <div class="product-image">
+                        <div class="product-icon plastic-icon">🪣</div>
+                    </div>
+                    <div class="product-label">
+                        <h3>🏠 Household Items</h3>
+                    </div>
+                    <div class="product-description">
+                        <p>Wide range of plastic household essentials including bowls, containers, buckets, baskets, and more</p>
+                    </div>
+                    <div class="product-action">
+                        <a href="products.html#household" class="shop-btn">Shop Now →</a>
+                    </div>
                 </div>
 
                 <!-- Kitchen Appliances -->
-                <div class="product-card">
+                <div class="product-card" data-category="kitchen">
                     <div class="product-image">
                         <div class="product-icon kitchen-icon">🍳</div>
                     </div>
                     <div class="product-label">
-                        <h3>Kitchen Appliances</h3>
+                        <h3>🍳 Kitchen Appliances</h3>
                     </div>
                     <div class="product-description">
                         <p>Modern kitchen appliances including refrigerators, gas stoves, mixer grinders, pressure cookers, and more</p>
                     </div>
+                    <div class="product-action">
+                        <a href="products.html#kitchen" class="shop-btn">Shop Now →</a>
+                    </div>
                 </div>
 
                 <!-- Atta Chakki -->
-                <div class="product-card">
+                <div class="product-card" data-category="chakki">
                     <div class="product-image">
                         <div class="product-icon chakki-icon">🌾</div>
                     </div>
                     <div class="product-label">
-                        <h3>Atta Chakki</h3>
+                        <h3>🌾 Atta Chakki</h3>
                     </div>
                     <div class="product-description">
                         <p>Automatic flour mills for fresh, healthy atta grinding at home</p>
                     </div>
+                    <div class="product-action">
+                        <a href="products.html#chakki" class="shop-btn">Shop Now →</a>
+                    </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- Special Offers Section -->
+        <section class="offers-section">
+            <div class="offer-banner">
+                <h2>🎉 Special Offers for Students! 🎉</h2>
+                <p>Get amazing discounts on stationary, toys, and gifts. Perfect for back-to-school season!</p>
+                <a href="contact.html" class="offer-btn">Contact for Best Prices 📞</a>
             </div>
         </section>
     </main>

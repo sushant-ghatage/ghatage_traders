@@ -50,6 +50,138 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
+    // Add click animation to product cards
+    document.querySelectorAll('.product-card').forEach(card => {
+        card.addEventListener('click', function(e) {
+            if (!e.target.closest('a')) {
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            }
+        });
+    });
+
+    // Add parallax effect to header
+    let lastScroll = 0;
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (header) {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.5;
+            header.style.transform = `translateY(${rate}px)`;
+        }
+    });
+
+    // Add floating animation to decorative shapes
+    const shapes = document.querySelectorAll('.shape');
+    shapes.forEach((shape, index) => {
+        setInterval(() => {
+            const randomX = (Math.random() - 0.5) * 20;
+            const randomY = (Math.random() - 0.5) * 20;
+            shape.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random() * 360}deg)`;
+        }, 3000 + index * 500);
+    });
+
+    // Add interactive hover effects to buttons
+    document.querySelectorAll('.shop-btn, .cta-button, .offer-btn').forEach(btn => {
+        btn.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-3px) scale(1.05)';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+
+    // Smooth scroll to sections
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Add confetti effect on special buttons (fun easter egg)
+    let confettiCount = 0;
+    document.querySelectorAll('.offer-btn, .cta-button.primary').forEach(btn => {
+        btn.addEventListener('click', function() {
+            if (confettiCount < 3) {
+                createConfetti(this);
+                confettiCount++;
+            }
+        });
+    });
+
+    function createConfetti(element) {
+        const colors = ['#FF6B9D', '#4ECDC4', '#FFE66D', '#FF6B6B', '#95E1D3'];
+        const rect = element.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+
+        for (let i = 0; i < 20; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = x + 'px';
+            confetti.style.top = y + 'px';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            document.body.appendChild(confetti);
+
+            const angle = (Math.PI * 2 * i) / 20;
+            const velocity = 5 + Math.random() * 5;
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+
+            let posX = x;
+            let posY = y;
+            let opacity = 1;
+
+            const animate = () => {
+                posX += vx;
+                posY += vy + 2;
+                opacity -= 0.02;
+
+                confetti.style.left = posX + 'px';
+                confetti.style.top = posY + 'px';
+                confetti.style.opacity = opacity;
+
+                if (opacity > 0) {
+                    requestAnimationFrame(animate);
+                } else {
+                    confetti.remove();
+                }
+            };
+            animate();
+        }
+    }
+
+    // Add typing effect to tagline (optional enhancement)
+    const tagline = document.querySelector('.tagline');
+    if (tagline && window.innerWidth > 768) {
+        const text = tagline.textContent;
+        tagline.textContent = '';
+        tagline.style.opacity = '1';
+        let i = 0;
+        const typeWriter = () => {
+            if (i < text.length) {
+                tagline.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        };
+        setTimeout(typeWriter, 1000);
+    }
+
     // Contact Form Handling
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
