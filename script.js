@@ -275,33 +275,72 @@ document.addEventListener('DOMContentLoaded', function() {
                 message: document.getElementById('message').value
             };
 
-            // Create mailto link (for basic functionality)
-            const subject = encodeURIComponent(`Contact Form: ${formData.subject}`);
-            const body = encodeURIComponent(
+            // Validate required fields
+            if (!formData.name || !formData.phone || !formData.subject || !formData.message) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+
+            // Create mailto link with email to ghatagetraders07@gmail.com
+            const emailSubject = encodeURIComponent(`Contact Form: ${formData.subject}`);
+            const emailBody = encodeURIComponent(
                 `Name: ${formData.name}\n` +
                 `Phone: ${formData.phone}\n` +
-                `Email: ${formData.email}\n\n` +
+                `Email: ${formData.email || 'Not provided'}\n\n` +
                 `Message:\n${formData.message}`
             );
             
             // Show success message with better UX
             const submitBtn = contactForm.querySelector('.submit-btn');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span>✓ Message Sent!</span>';
+            submitBtn.innerHTML = '<span>✓ Opening Email...</span>';
             submitBtn.style.background = 'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)';
             submitBtn.disabled = true;
             
+            // Open email client with pre-filled information
+            window.location.href = `mailto:ghatagetraders07@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+            
             setTimeout(() => {
-                alert('Thank you for your message! We will contact you soon.\n\nFor now, this form opens your email client. In a production environment, this would be connected to a backend server.');
                 submitBtn.innerHTML = originalText;
                 submitBtn.style.background = '';
                 submitBtn.disabled = false;
                 contactForm.reset();
-            }, 2000);
-            
-            // Open email client (optional)
-            // window.location.href = `mailto:info@ghatagetraders.com?subject=${subject}&body=${body}`;
+            }, 3000);
         });
+        
+        // WhatsApp button functionality
+        const whatsappBtn = document.getElementById('whatsappBtn');
+        if (whatsappBtn) {
+            whatsappBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value || 'Customer';
+                const phone = document.getElementById('phone').value || '';
+                const email = document.getElementById('email').value || '';
+                const subject = document.getElementById('subject').value || 'Inquiry';
+                const message = document.getElementById('message').value || '';
+                
+                // Validate required fields
+                if (!phone || !message) {
+                    alert('Please fill in Phone Number and Message to send via WhatsApp.');
+                    return;
+                }
+                
+                // Create WhatsApp message
+                const whatsappMessage = encodeURIComponent(
+                    `Hello Ghatage Traders,\n\n` +
+                    `Name: ${name}\n` +
+                    `Phone: ${phone}\n` +
+                    `${email ? `Email: ${email}\n` : ''}` +
+                    `Subject: ${subject}\n\n` +
+                    `Message:\n${message}`
+                );
+                
+                // Open WhatsApp with pre-filled message
+                window.open(`https://wa.me/917020163385?text=${whatsappMessage}`, '_blank');
+            });
+        }
     }
 });
 
