@@ -27,26 +27,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Add scroll animation to elements
+    // Premium scroll animation with stagger effect
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
     };
 
     const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
+        entries.forEach((entry, index) => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                setTimeout(() => {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                    entry.target.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                }, index * 100);
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // Observe product cards and about cards
-    document.querySelectorAll('.product-card, .about-card, .product-category').forEach(el => {
+    // Observe product cards and about cards with premium animations
+    document.querySelectorAll('.product-card, .about-card, .product-category').forEach((el, index) => {
         el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        el.style.transform = 'translateY(50px) scale(0.95)';
+        el.style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
         observer.observe(el);
     });
 
@@ -62,35 +66,108 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add scroll effect to navbar
+    // Premium scroll effect to navbar with smooth transitions
+    let lastScroll = 0;
     window.addEventListener('scroll', function() {
         const navbar = document.querySelector('.navbar');
+        const currentScroll = window.pageYOffset;
+        
         if (navbar) {
-            if (window.scrollY > 50) {
+            if (currentScroll > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
+            
+            // Hide/show navbar on scroll
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                navbar.style.transform = 'translateY(-100%)';
+            } else {
+                navbar.style.transform = 'translateY(0)';
+            }
+            lastScroll = currentScroll;
         }
-    });
+    }, { passive: true });
+    
+    // Parallax effect for header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('.header');
+        if (header) {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * 0.3;
+            header.style.transform = `translateY(${rate}px)`;
+        }
+    }, { passive: true });
 
-    // Add floating animation to decorative shapes
+    // Premium floating animation for decorative shapes
     const shapes = document.querySelectorAll('.shape');
     shapes.forEach((shape, index) => {
+        let angle = 0;
         setInterval(() => {
-            const randomX = (Math.random() - 0.5) * 20;
-            const randomY = (Math.random() - 0.5) * 20;
-            shape.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${Math.random() * 360}deg)`;
-        }, 3000 + index * 500);
+            angle += 0.5;
+            const x = Math.sin(angle + index) * 15;
+            const y = Math.cos(angle + index) * 15;
+            shape.style.transform = `translate(${x}px, ${y}px) rotate(${angle * 10}deg)`;
+            shape.style.transition = 'transform 2s ease-in-out';
+        }, 50);
     });
-
-    // Add interactive hover effects to buttons
-    document.querySelectorAll('.shop-btn, .cta-button, .offer-btn').forEach(btn => {
-        btn.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.05)';
+    
+    // Add mouse parallax effect to header
+    const header = document.querySelector('.header');
+    if (header) {
+        header.addEventListener('mousemove', function(e) {
+            const rect = header.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const moveX = (x - centerX) / 20;
+            const moveY = (y - centerY) / 20;
+            
+            const shapes = header.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = (index + 1) * 0.5;
+                shape.style.transform = `translate(${moveX * speed}px, ${moveY * speed}px)`;
+                shape.style.transition = 'transform 0.3s ease-out';
+            });
         });
+    }
+
+    // Premium interactive hover effects with magnetic effect
+    document.querySelectorAll('.shop-btn, .cta-button, .offer-btn').forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) scale(1.05)`;
+        });
+        
         btn.addEventListener('mouseleave', function() {
-            this.style.transform = '';
+            this.style.transform = 'translate(0, 0) scale(1)';
+            this.style.transition = 'transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+        });
+    });
+    
+    // Add ripple effect to buttons
+    document.querySelectorAll('.shop-btn, .cta-button, .offer-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
     });
 
