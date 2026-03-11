@@ -1,291 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products - Ghatage Traders | Stationary, Toys, Gifts & More</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products – Ghatage Traders | Stationary, Toys, Gifts & More</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root { --saffron:#FF6B00; --gold:#FFB800; --deep-red:#C0392B; --cream:#FFF8EE; --green:#27AE60; --dark:#1A0A00; --text:#3D1C00; }
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+  /* NAV same as index */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,248,238,0.96);backdrop-filter:blur(15px);border-bottom:2px solid rgba(255,184,0,0.4);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 4px 25px rgba(255,107,0,0.12);}
+  .nav-logo{font-family:'Yatra One',cursive;font-size:1.55rem;color:var(--saffron);text-decoration:none;display:flex;align-items:center;gap:9px;}
+  .nav-logo strong{color:var(--deep-red);font-family:'Yatra One',cursive;font-weight:400;}
+  .nav-links{display:flex;gap:30px;list-style:none;align-items:center;}
+  .nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:0.9rem;position:relative;padding-bottom:3px;transition:color 0.3s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--saffron),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--saffron);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:linear-gradient(135deg,var(--saffron),var(--deep-red))!important;color:white!important;padding:9px 24px!important;border-radius:28px;font-weight:600!important;box-shadow:0 4px 18px rgba(255,107,0,0.3);}
+  .nav-cta::after{display:none!important;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
+  .hamburger span{width:24px;height:2px;background:var(--saffron);border-radius:2px;}
+  @media(max-width:768px){.nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(255,248,238,0.98);flex-direction:column;padding:25px;gap:20px;border-bottom:2px solid rgba(255,184,0,0.3);backdrop-filter:blur(15px);} .nav-links.open{display:flex;} .hamburger{display:flex;}}
+  /* BANNER */
+  .festival-banner{position:fixed;top:68px;left:0;right:0;z-index:999;background:linear-gradient(135deg,var(--saffron),var(--gold) 50%,var(--deep-red));color:white;padding:7px 0;overflow:hidden;}
+  .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll-marquee 22s linear infinite;}
+  .marquee-track span{display:inline-flex;align-items:center;gap:10px;font-size:0.82rem;font-weight:600;}
+  @keyframes scroll-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  /* PAGE HERO */
+  .page-hero{padding:115px 7% 55px;background:linear-gradient(135deg,var(--cream),#FFF3E0);text-align:center;position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(255,184,0,0.15) 0%,transparent 60%);}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--dark);position:relative;z-index:1;}
+  .page-hero h1 em{font-style:normal;color:var(--saffron);}
+  .page-hero p{color:#7D5A3C;font-size:1rem;margin-top:12px;position:relative;z-index:1;max-width:520px;margin-left:auto;margin-right:auto;}
+  /* FILTER TABS */
+  .filter-bar{padding:0 7% 40px;display:flex;gap:10px;flex-wrap:wrap;justify-content:center;}
+  .ftab{padding:9px 22px;border-radius:25px;border:1.5px solid rgba(255,107,0,0.22);background:white;color:var(--text);font-weight:500;font-size:0.88rem;cursor:pointer;transition:all 0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:6px;}
+  .ftab:hover,.ftab.active{background:linear-gradient(135deg,var(--saffron),var(--deep-red));color:white;border-color:transparent;box-shadow:0 4px 18px rgba(255,107,0,0.3);}
+  /* PRODUCT SECTIONS */
+  .prod-section{padding:60px 7%;border-bottom:1px solid rgba(255,107,0,0.1);}
+  .prod-section:last-of-type{border-bottom:none;}
+  .prod-header{display:flex;align-items:center;gap:18px;margin-bottom:35px;padding-bottom:20px;border-bottom:2px solid rgba(255,107,0,0.15);}
+  .prod-header-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:1.8rem;box-shadow:0 6px 22px rgba(255,107,0,0.3);flex-shrink:0;}
+  .prod-header-text h2{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;color:var(--dark);}
+  .prod-header-text p{font-size:0.88rem;color:#7D5A3C;margin-top:3px;}
+  .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .prod-card{background:white;border-radius:16px;padding:24px;border:1.5px solid rgba(255,107,0,0.09);box-shadow:0 4px 18px rgba(0,0,0,0.04);transition:all 0.35s;position:relative;overflow:hidden;}
+  .prod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold));}
+  .prod-card:hover{transform:translateY(-6px);box-shadow:0 16px 42px rgba(255,107,0,0.16);}
+  .prod-ic{font-size:2.2rem;margin-bottom:12px;display:block;}
+  .prod-nm{font-weight:700;color:var(--dark);font-size:0.95rem;margin-bottom:7px;}
+  .prod-ds{font-size:0.82rem;color:#7D5A3C;line-height:1.6;}
+  .prod-tag{position:absolute;top:14px;right:14px;font-size:0.65rem;font-weight:700;padding:3px 9px;border-radius:10px;text-transform:uppercase;}
+  .pt-fest{background:#FFF3E0;color:var(--saffron);}
+  .pt-pop{background:#E8F5E9;color:#27AE60;}
+  /* SCROLL TOP */
+  .scroll-top{position:fixed;bottom:28px;right:28px;width:48px;height:48px;background:linear-gradient(135deg,var(--saffron),var(--deep-red));border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;color:white;box-shadow:0 6px 25px rgba(255,107,0,0.42);transition:all 0.3s;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:999;}
+  .scroll-top.show{opacity:1;pointer-events:auto;}
+  /* FOOTER */
+  footer{background:linear-gradient(180deg,#1A0A00,#0D0500);padding:50px 7% 25px;}
+  .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;color:rgba(255,248,238,0.4);padding-top:30px;}
+  .ft-logo{font-family:'Yatra One',cursive;font-size:1.6rem;color:var(--gold);display:block;margin-bottom:8px;}
+  .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,184,0,0.1);}
+  .ft-desc{font-size:0.88rem;color:rgba(255,248,238,0.58);line-height:1.72;margin-bottom:18px;}
+  .ft-ci{display:flex;align-items:center;gap:9px;font-size:0.88rem;color:rgba(255,248,238,0.68);margin-bottom:8px;}
+  .ft-ci a{color:var(--gold);text-decoration:none;}
+  .ft-col h4{font-weight:700;color:var(--cream);font-size:0.88rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+  .ft-col h4::after{content:'';display:block;height:2px;width:28px;background:linear-gradient(90deg,var(--saffron),var(--gold));margin-top:7px;border-radius:1px;}
+  .ft-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .ft-links a{text-decoration:none;color:rgba(255,248,238,0.58);font-size:0.88rem;transition:all 0.3s;}
+  .ft-links a:hover{color:var(--gold);padding-left:4px;}
+  @media(max-width:900px){.products-grid{grid-template-columns:repeat(2,1fr);} .ft-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.products-grid{grid-template-columns:1fr;} .ft-grid{grid-template-columns:1fr;} .page-hero h1{font-size:2.2rem;}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">GHATAGE TRADERS</a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="products.html" class="nav-link active">Products</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<button class="scroll-top" id="stb">↑</button>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section class="page-header">
-            <h1 class="page-title">🛍️ Our Products</h1>
-            <p class="page-subtitle">Everything you need - From Stationary to Toys, Gifts & More!</p>
-        </section>
+<nav>
+  <a class="nav-logo" href="index.html">🪔 Ghatage <strong>Traders</strong></a>
+  <div class="hamburger" onclick="document.getElementById('nl').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+  <ul class="nav-links" id="nl">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html" class="active">Products</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+<div class="festival-banner">
+  <div class="marquee-track">
+    <span>🌺 गुढीपाडव्याच्या हार्दिक शुभेच्छा!</span><span>🛍️ Festival Offers at Pachgaon, Kolhapur</span><span>📞 72764 49363</span><span>🌸 Puja Items, Gifts, Toys — All Under One Roof</span>
+    <span>🌺 गुढीपाडव्याच्या हार्दिक शुभेच्छा!</span><span>🛍️ Festival Offers at Pachgaon, Kolhapur</span><span>📞 72764 49363</span><span>🌸 Puja Items, Gifts, Toys — All Under One Roof</span>
+  </div>
+</div>
 
-        <!-- Product Categories -->
-        <section class="products-section">
-            <!-- Stationary -->
-            <div class="product-category" id="stationary">
-                <div class="category-header">
-                    <img src="images/stationary.svg" alt="Stationary" class="category-icon-img">
-                    <h2>📝 Stationary</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Notebooks & Books</h3>
-                            <p>Wide variety of notebooks, exercise books, drawing books, and study materials for all classes.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Pens & Pencils</h3>
-                            <p>Ball pens, gel pens, fountain pens, pencils, colored pencils, and markers from top brands.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Geometry Boxes</h3>
-                            <p>Complete geometry sets with compass, protractor, ruler, and all essential tools for students.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>School Bags</h3>
-                            <p>Stylish and durable school bags, backpacks, and trolley bags for students of all ages.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Art Supplies</h3>
-                            <p>Watercolors, crayons, sketch pens, paint brushes, and all art materials for creative minds.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Office Supplies</h3>
-                            <p>Files, folders, staplers, paper clips, sticky notes, and all office essentials.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="page-hero">
+  <h1>Our <em>Products</em></h1>
+  <p>Everything you need — from school stationery to kitchen appliances, all under one roof at Pachgaon, Kolhapur</p>
+</div>
 
-            <!-- Toys & Games -->
-            <div class="product-category" id="toys">
-                <div class="category-header">
-                    <div class="category-icon">🧸🎮</div>
-                    <h2>🧸 Toys & Games</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Action Figures & Dolls</h3>
-                            <p>Popular action figures, superhero toys, Barbie dolls, and character toys for kids.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Board Games</h3>
-                            <p>Chess, Ludo, Snakes & Ladders, Monopoly, and educational board games for family fun.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Puzzles & Building Blocks</h3>
-                            <p>Jigsaw puzzles, LEGO-style building blocks, and construction toys for creative play.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Educational Toys</h3>
-                            <p>STEM toys, science kits, learning games, and educational toys for smart kids.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Outdoor Toys</h3>
-                            <p>Bicycles, scooters, balls, skipping ropes, and outdoor play equipment.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Soft Toys</h3>
-                            <p>Cuddly teddy bears, plush toys, and soft toys perfect for gifts and comfort.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<div class="filter-bar">
+  <a href="#stationary" class="ftab">📝 Stationary</a>
+  <a href="#toys" class="ftab">🧸 Toys & Games</a>
+  <a href="#gifts" class="ftab">🎁 Gifts</a>
+  <a href="#puja" class="ftab">🕉️ Puja Sahitya</a>
+  <a href="#household" class="ftab">🏠 Household</a>
+  <a href="#kitchen" class="ftab">🍳 Kitchen</a>
+  <a href="#chakki" class="ftab">🌾 Atta Chakki</a>
+</div>
 
-            <!-- Gifts -->
-            <div class="product-category" id="gifts">
-                <div class="category-header">
-                    <div class="category-icon">🎁🎈</div>
-                    <h2>🎁 Gifts</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Birthday Gifts</h3>
-                            <p>Perfect birthday gift sets, party supplies, balloons, and celebration items.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Festival Gifts</h3>
-                            <p>Special gifts for Diwali, Christmas, New Year, and other festivals.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Gift Sets</h3>
-                            <p>Curated gift sets, hampers, and combo packs for all occasions.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Decorative Items</h3>
-                            <p>Home decor items, photo frames, showpieces, and decorative accessories.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Personalized Gifts</h3>
-                            <p>Customized gifts, name plates, and personalized items for special moments.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- STATIONARY -->
+<div class="prod-section" id="stationary">
+  <div class="prod-header">
+    <div class="prod-header-icon">📝</div>
+    <div class="prod-header-text">
+      <h2>Stationary</h2>
+      <p>Complete school & office supplies for students and professionals</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><span class="prod-ic">📓</span><div class="prod-nm">Notebooks & Books</div><div class="prod-ds">Wide variety of notebooks, exercise books, drawing books, and study materials for all classes.</div></div>
+    <div class="prod-card"><span class="prod-ic">✏️</span><div class="prod-nm">Pens & Pencils</div><div class="prod-ds">Ball pens, gel pens, fountain pens, pencils, colored pencils, and markers from top brands.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-pop">Popular</div><span class="prod-ic">📐</span><div class="prod-nm">Geometry Boxes</div><div class="prod-ds">Complete geometry sets with compass, protractor, ruler, and all essential tools for students.</div></div>
+    <div class="prod-card"><span class="prod-ic">🎒</span><div class="prod-nm">School Bags</div><div class="prod-ds">Stylish and durable school bags, backpacks, and trolley bags for students of all ages.</div></div>
+    <div class="prod-card"><span class="prod-ic">🎨</span><div class="prod-nm">Art Supplies</div><div class="prod-ds">Watercolors, crayons, sketch pens, paint brushes, and all art materials for creative minds.</div></div>
+    <div class="prod-card"><span class="prod-ic">📁</span><div class="prod-nm">Office Supplies</div><div class="prod-ds">Files, folders, staplers, paper clips, sticky notes, and all office essentials.</div></div>
+  </div>
+</div>
 
-            <!-- Household Plastic Items -->
-            <div class="product-category" id="household">
-            <div class="product-category">
-                    <div class="category-header">
-                    <div class="category-icon">🪣</div>
-                    <h2>🏠 Household Plastic Items</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Plastic Bowls & Containers</h3>
-                            <p>Various sizes and colors of plastic bowls, containers, and storage boxes for kitchen and household use.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Water Bottles</h3>
-                            <p>Durable plastic water bottles in multiple colors and sizes, perfect for daily use.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Buckets & Mugs</h3>
-                            <p>Heavy-duty plastic buckets and mugs in various capacities for household and commercial use.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Baskets & Storage</h3>
-                            <p>Colorful plastic baskets and storage solutions for organizing your home.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Plates & Trays</h3>
-                            <p>Dinner plates, serving trays, and tiffin boxes in various designs and sizes.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Kitchen Accessories</h3>
-                            <p>Dustpans, brushes, stools, and other essential plastic kitchen accessories.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- TOYS -->
+<div class="prod-section" id="toys">
+  <div class="prod-header">
+    <div class="prod-header-icon">🧸</div>
+    <div class="prod-header-text">
+      <h2>Toys & Games</h2>
+      <p>Fun, educational, and entertaining toys for children of all ages</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><span class="prod-ic">🦸</span><div class="prod-nm">Action Figures & Dolls</div><div class="prod-ds">Popular action figures, superhero toys, Barbie dolls, and character toys for kids.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-pop">Popular</div><span class="prod-ic">♟️</span><div class="prod-nm">Board Games</div><div class="prod-ds">Chess, Ludo, Snakes & Ladders, Monopoly, and educational board games for family fun.</div></div>
+    <div class="prod-card"><span class="prod-ic">🧩</span><div class="prod-nm">Puzzles & Building Blocks</div><div class="prod-ds">Jigsaw puzzles, LEGO-style building blocks, and construction toys for creative play.</div></div>
+    <div class="prod-card"><span class="prod-ic">🔬</span><div class="prod-nm">Educational Toys</div><div class="prod-ds">STEM toys, science kits, learning games, and educational toys for smart kids.</div></div>
+    <div class="prod-card"><span class="prod-ic">🚲</span><div class="prod-nm">Outdoor Toys</div><div class="prod-ds">Bicycles, scooters, balls, skipping ropes, and outdoor play equipment.</div></div>
+    <div class="prod-card"><span class="prod-ic">🧸</span><div class="prod-nm">Soft Toys</div><div class="prod-ds">Cuddly teddy bears, plush toys, and soft toys perfect for gifts and comfort.</div></div>
+  </div>
+</div>
 
-            <!-- Puja Sahitya -->
-            <div class="product-category" id="puja">
-                <div class="category-header">
-                    <img src="images/puja-sahitya.jpg" alt="Puja Sahitya" class="category-icon-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <div class="category-icon" style="display:none;">🕉️</div>
-                    <h2>🕉️ Puja Sahitya</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Brass Lamps (Diyas)</h3>
-                            <p>Traditional brass oil lamps with single and multiple wicks for religious ceremonies.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Puja Stands & Altars</h3>
-                            <p>Ornate wooden and metal stands with intricate designs for home temples and puja rooms.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Kumkum & Haldi Containers</h3>
-                            <p>Silver and brass containers for storing kumkum, haldi, and other puja materials.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Brass Bowls & Cups</h3>
-                            <p>Traditional brass bowls and cups used in religious rituals and ceremonies.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Puja Accessories</h3>
-                            <p>Complete range of puja accessories including bells, incense holders, and ritual items.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- GIFTS -->
+<div class="prod-section" id="gifts">
+  <div class="prod-header">
+    <div class="prod-header-icon">🎁</div>
+    <div class="prod-header-text">
+      <h2>Gifts</h2>
+      <p>Perfect gifts for every occasion — birthdays, festivals & special moments</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><div class="prod-tag pt-fest">Gudi Padwa</div><span class="prod-ic">🎂</span><div class="prod-nm">Birthday Gifts</div><div class="prod-ds">Perfect birthday gift sets, party supplies, balloons, and celebration items.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-fest">Festival</div><span class="prod-ic">🪔</span><div class="prod-nm">Festival Gifts</div><div class="prod-ds">Special gifts for Gudi Padwa, Diwali, New Year, and all festive occasions.</div></div>
+    <div class="prod-card"><span class="prod-ic">🎀</span><div class="prod-nm">Gift Sets & Hampers</div><div class="prod-ds">Curated gift sets, hampers, and combo packs for all occasions.</div></div>
+    <div class="prod-card"><span class="prod-ic">🏺</span><div class="prod-nm">Decorative Items</div><div class="prod-ds">Home decor items, photo frames, showpieces, and decorative accessories.</div></div>
+    <div class="prod-card"><span class="prod-ic">🎭</span><div class="prod-nm">Personalized Gifts</div><div class="prod-ds">Customized gifts, name plates, and personalized items for special moments.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-fest">New</div><span class="prod-ic">🌸</span><div class="prod-nm">Gudi Padwa Specials</div><div class="prod-ds">Exclusive Gudi Padwa gift packages with traditional and modern elements.</div></div>
+  </div>
+</div>
 
-            <!-- Kitchen Appliances -->
-            <div class="product-category" id="kitchen">
-                <div class="category-header">
-                    <div class="category-icon">🍳</div>
-                    <h2>🍳 Kitchen Appliances</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Gas Stoves</h3>
-                            <p>Modern gas stoves with 2, 3, and 4 burners, featuring safety features and elegant designs.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Mixer Grinders</h3>
-                            <p>Powerful mixer grinders for grinding, blending, and mixing ingredients efficiently.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Pressure Cookers</h3>
-                            <p>Stainless steel pressure cookers in various sizes for fast and efficient cooking.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Small Appliances</h3>
-                            <p>Electric kettles, toasters, food processors, rice cookers, and other modern kitchen gadgets.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Cooking Utensils</h3>
-                            <p>Complete range of cooking utensils including spoons, spatulas, and kitchen tool sets.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!-- PUJA SAHITYA -->
+<div class="prod-section" id="puja">
+  <div class="prod-header">
+    <div class="prod-header-icon">🕉️</div>
+    <div class="prod-header-text">
+      <h2>Puja Sahitya</h2>
+      <p>Authentic religious items for all your puja and festival needs</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><div class="prod-tag pt-fest">Gudi Padwa</div><span class="prod-ic">🪔</span><div class="prod-nm">Brass Lamps (Diyas)</div><div class="prod-ds">Traditional brass oil lamps with single and multiple wicks for religious ceremonies.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-fest">Festival</div><span class="prod-ic">🛕</span><div class="prod-nm">Puja Stands & Altars</div><div class="prod-ds">Ornate wooden and metal stands with intricate designs for home temples and puja rooms.</div></div>
+    <div class="prod-card"><span class="prod-ic">🔴</span><div class="prod-nm">Kumkum & Haldi Containers</div><div class="prod-ds">Silver and brass containers for storing kumkum, haldi, and other puja materials.</div></div>
+    <div class="prod-card"><span class="prod-ic">🥣</span><div class="prod-nm">Brass Bowls & Cups</div><div class="prod-ds">Traditional brass bowls and cups used in religious rituals and ceremonies.</div></div>
+    <div class="prod-card"><span class="prod-ic">🔔</span><div class="prod-nm">Puja Accessories</div><div class="prod-ds">Complete range — bells, incense holders, agarbatti stands, and ritual items.</div></div>
+    <div class="prod-card"><div class="prod-tag pt-fest">New Stock</div><span class="prod-ic">🌺</span><div class="prod-nm">Gudi & Kalash</div><div class="prod-ds">Complete Gudi Padwa setup — silk cloth, kalash, mango leaves, and accessories.</div></div>
+  </div>
+</div>
 
-            <!-- Atta Chakki -->
-            <div class="product-category" id="chakki">
-                <div class="category-header">
-                    <div class="category-icon">🌾</div>
-                    <h2>🌾 Atta Chakki (Flour Mills)</h2>
-                </div>
-                <div class="category-content">
-                    <div class="product-list">
-                        <div class="product-item">
-                            <h3>Automatic Atta Chakki</h3>
-                            <p>Fully automatic flour mills with digital display and modern features for grinding fresh atta at home.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Compact Models</h3>
-                            <p>Space-saving compact models perfect for small kitchens and apartments.</p>
-                        </div>
-                        <div class="product-item">
-                            <h3>Commercial Models</h3>
-                            <p>Heavy-duty models designed for commercial use and high-volume grinding.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+<!-- HOUSEHOLD -->
+<div class="prod-section" id="household">
+  <div class="prod-header">
+    <div class="prod-header-icon">🏠</div>
+    <div class="prod-header-text">
+      <h2>Household Plastic Items</h2>
+      <p>Durable and colorful plastic products for everyday home use</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><span class="prod-ic">🥣</span><div class="prod-nm">Bowls & Containers</div><div class="prod-ds">Various sizes and colors of plastic bowls, containers, and storage boxes.</div></div>
+    <div class="prod-card"><span class="prod-ic">🍶</span><div class="prod-nm">Water Bottles</div><div class="prod-ds">Durable plastic water bottles in multiple colors and sizes for daily use.</div></div>
+    <div class="prod-card"><span class="prod-ic">🪣</span><div class="prod-nm">Buckets & Mugs</div><div class="prod-ds">Heavy-duty plastic buckets and mugs in various capacities for home use.</div></div>
+    <div class="prod-card"><span class="prod-ic">🧺</span><div class="prod-nm">Baskets & Storage</div><div class="prod-ds">Colorful plastic baskets and storage solutions for organizing your home.</div></div>
+    <div class="prod-card"><span class="prod-ic">🍽️</span><div class="prod-nm">Plates & Trays</div><div class="prod-ds">Dinner plates, serving trays, and tiffin boxes in various designs and sizes.</div></div>
+    <div class="prod-card"><span class="prod-ic">🧹</span><div class="prod-nm">Kitchen Accessories</div><div class="prod-ds">Dustpans, brushes, stools, and other essential plastic kitchen accessories.</div></div>
+  </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-icon">📞</span>
-                    <a href="tel:7276449363" class="contact-link">72764 49363</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <address class="address">80/5, Bhogam Colony, Pachgaon, Kolhapur</address>
-                </div>
-            </div>
-        </div>
-    </footer>
+<!-- KITCHEN APPLIANCES -->
+<div class="prod-section" id="kitchen">
+  <div class="prod-header">
+    <div class="prod-header-icon">🍳</div>
+    <div class="prod-header-text">
+      <h2>Kitchen Appliances</h2>
+      <p>Modern kitchen essentials from trusted brands</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><div class="prod-tag pt-pop">Best Seller</div><span class="prod-ic">🔥</span><div class="prod-nm">Gas Stoves</div><div class="prod-ds">Modern gas stoves with 2, 3, and 4 burners with safety features and elegant designs.</div></div>
+    <div class="prod-card"><span class="prod-ic">🌀</span><div class="prod-nm">Mixer Grinders</div><div class="prod-ds">Powerful mixer grinders for grinding, blending, and mixing ingredients efficiently.</div></div>
+    <div class="prod-card"><span class="prod-ic">♨️</span><div class="prod-nm">Pressure Cookers</div><div class="prod-ds">Stainless steel pressure cookers in various sizes for fast and efficient cooking.</div></div>
+    <div class="prod-card"><span class="prod-ic">⚡</span><div class="prod-nm">Small Appliances</div><div class="prod-ds">Electric kettles, toasters, food processors, rice cookers, and modern kitchen gadgets.</div></div>
+    <div class="prod-card"><span class="prod-ic">🥄</span><div class="prod-nm">Cooking Utensils</div><div class="prod-ds">Complete range of cooking utensils including spoons, spatulas, and kitchen tool sets.</div></div>
+    <div class="prod-card"><span class="prod-ic">🧊</span><div class="prod-nm">Storage Solutions</div><div class="prod-ds">Air-tight containers, refrigerator organizers, and kitchen storage essentials.</div></div>
+  </div>
+</div>
 
-    <script src="script.js"></script>
+<!-- ATTA CHAKKI -->
+<div class="prod-section" id="chakki">
+  <div class="prod-header">
+    <div class="prod-header-icon">🌾</div>
+    <div class="prod-header-text">
+      <h2>Atta Chakki (Flour Mills)</h2>
+      <p>Fresh, healthy home-ground atta every day</p>
+    </div>
+  </div>
+  <div class="products-grid">
+    <div class="prod-card"><div class="prod-tag pt-pop">Popular</div><span class="prod-ic">⚙️</span><div class="prod-nm">Automatic Atta Chakki</div><div class="prod-ds">Fully automatic flour mills with digital display and modern features for grinding fresh atta at home.</div></div>
+    <div class="prod-card"><span class="prod-ic">🏠</span><div class="prod-nm">Compact Models</div><div class="prod-ds">Space-saving compact models perfect for small kitchens and apartments.</div></div>
+    <div class="prod-card"><span class="prod-ic">🏭</span><div class="prod-nm">Commercial Models</div><div class="prod-ds">Heavy-duty models designed for commercial use and high-volume grinding.</div></div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div style="background:linear-gradient(135deg,var(--saffron),var(--deep-red));padding:65px 7%;text-align:center;position:relative;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.1) 0%,transparent 60%);"></div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:2.4rem;color:white;margin-bottom:12px;position:relative;z-index:1">Can't Find What You're Looking For?</h2>
+  <p style="color:rgba(255,255,255,0.9);font-size:1rem;margin-bottom:30px;max-width:500px;margin-left:auto;margin-right:auto;position:relative;z-index:1">Call or visit us — we have a huge in-store collection. Special wholesale rates available!</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;">
+    <a href="contact.html" style="background:white;color:var(--saffron);padding:13px 32px;border-radius:32px;text-decoration:none;font-weight:700;font-size:0.95rem;display:inline-flex;align-items:center;gap:7px;transition:all 0.3s;">📍 Visit Us</a>
+    <a href="tel:7276449363" style="background:transparent;color:white;padding:13px 32px;border-radius:32px;text-decoration:none;font-weight:600;font-size:0.95rem;border:2px solid rgba(255,255,255,0.65);display:inline-flex;align-items:center;gap:7px;transition:all 0.3s;">📞 Call Now</a>
+  </div>
+</div>
+
+<footer>
+  <div class="ft-grid">
+    <div><span class="ft-logo">🪔 Ghatage Traders</span><p class="ft-desc">Your trusted one-stop shop in Kolhapur for all household needs.</p><div class="ft-ci">📞 <a href="tel:7276449363">72764 49363</a></div><div class="ft-ci">📍 80/5, Bhogam Colony, Pachgaon, Kolhapur</div></div>
+    <div class="ft-col"><h4>Quick Links</h4><ul class="ft-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Products</h4><ul class="ft-links"><li><a href="#stationary">Stationary</a></li><li><a href="#toys">Toys</a></li><li><a href="#gifts">Gifts</a></li><li><a href="#puja">Puja Sahitya</a></li><li><a href="#household">Household</a></li><li><a href="#kitchen">Kitchen</a></li></ul></div>
+    <div class="ft-col"><h4>Festival</h4><ul class="ft-links"><li><a href="#puja">🌺 Gudi Padwa Puja</a></li><li><a href="#gifts">🎁 Festival Gifts</a></li><li><a href="contact.html">💰 Wholesale</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span>© 2025 Ghatage Traders. All rights reserved.</span><span>Made with ❤️ in Kolhapur</span></div>
+</footer>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('stb').classList.toggle('show',scrollY>350));
+  document.getElementById('stb').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.08});
+  document.querySelectorAll('.prod-card').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(25px)';el.style.transition=`opacity 0.5s ease ${i*0.06}s,transform 0.5s ease ${i*0.06}s`;io.observe(el);});
+</script>
 </body>
 </html>
-
