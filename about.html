@@ -1,108 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Ghatage Traders</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us – Ghatage Traders | Kolhapur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  :root{--saffron:#FF6B00;--gold:#FFB800;--deep-red:#C0392B;--cream:#FFF8EE;--green:#27AE60;--dark:#1A0A00;--text:#3D1C00;}
+  *{margin:0;padding:0;box-sizing:border-box;} html{scroll-behavior:smooth;}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,248,238,0.96);backdrop-filter:blur(15px);border-bottom:2px solid rgba(255,184,0,0.4);padding:0 6%;display:flex;align-items:center;justify-content:space-between;height:68px;box-shadow:0 4px 25px rgba(255,107,0,0.12);}
+  .nav-logo{font-family:'Yatra One',cursive;font-size:1.55rem;color:var(--saffron);text-decoration:none;display:flex;align-items:center;gap:9px;}
+  .nav-logo strong{color:var(--deep-red);font-family:'Yatra One',cursive;font-weight:400;}
+  .nav-links{display:flex;gap:30px;list-style:none;align-items:center;}
+  .nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:0.9rem;position:relative;padding-bottom:3px;transition:color 0.3s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--saffron),var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s;}
+  .nav-links a:hover,.nav-links a.active{color:var(--saffron);}
+  .nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1);}
+  .nav-cta{background:linear-gradient(135deg,var(--saffron),var(--deep-red))!important;color:white!important;padding:9px 24px!important;border-radius:28px;font-weight:600!important;box-shadow:0 4px 18px rgba(255,107,0,0.3);}
+  .nav-cta::after{display:none!important;}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:5px;}
+  .hamburger span{width:24px;height:2px;background:var(--saffron);border-radius:2px;}
+  @media(max-width:768px){.nav-links{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(255,248,238,0.98);flex-direction:column;padding:25px;gap:20px;border-bottom:2px solid rgba(255,184,0,0.3);backdrop-filter:blur(15px);} .nav-links.open{display:flex;} .hamburger{display:flex;}}
+  .festival-banner{position:fixed;top:68px;left:0;right:0;z-index:999;background:linear-gradient(135deg,var(--saffron),var(--gold) 50%,var(--deep-red));color:white;padding:7px 0;overflow:hidden;}
+  .marquee-track{display:flex;gap:60px;white-space:nowrap;animation:scroll-marquee 22s linear infinite;}
+  .marquee-track span{display:inline-flex;align-items:center;gap:10px;font-size:0.82rem;font-weight:600;}
+  @keyframes scroll-marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  /* PAGE HERO */
+  .page-hero{padding:115px 7% 55px;background:linear-gradient(135deg,var(--cream),#FFF3E0);text-align:center;position:relative;overflow:hidden;}
+  .page-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 50%,rgba(255,107,0,0.12) 0%,transparent 60%);}
+  .page-hero h1{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;color:var(--dark);position:relative;z-index:1;}
+  .page-hero h1 em{font-style:normal;color:var(--saffron);}
+  .page-hero p{color:#7D5A3C;font-size:1rem;margin-top:12px;position:relative;z-index:1;}
+  /* STORY */
+  .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:72px 7%;background:white;}
+  .story-visual{display:flex;align-items:center;justify-content:center;}
+  .story-card{background:linear-gradient(135deg,var(--saffron),var(--deep-red));border-radius:28px;padding:42px;text-align:center;color:white;box-shadow:0 20px 60px rgba(255,107,0,0.3);position:relative;overflow:hidden;width:100%;max-width:350px;}
+  .story-card::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 25% 25%,rgba(255,255,255,0.15) 0%,transparent 55%);}
+  .story-card .big{font-size:5rem;display:block;margin-bottom:18px;position:relative;z-index:1;animation:bounce 2.5s ease-in-out infinite;}
+  @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+  .story-card h3{font-family:'Yatra One',cursive;font-size:1.8rem;position:relative;z-index:1;margin-bottom:8px;}
+  .story-card p{opacity:0.9;font-size:0.9rem;line-height:1.65;position:relative;z-index:1;}
+  .tag{display:inline-block;background:linear-gradient(135deg,rgba(255,107,0,0.1),rgba(255,184,0,0.15));color:var(--saffron);font-size:0.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:20px;border:1px solid rgba(255,107,0,0.22);margin-bottom:12px;}
+  .story-text h2{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dark);margin-bottom:16px;}
+  .story-text h2 em{font-style:normal;color:var(--saffron);}
+  .story-text p{color:#7D5A3C;font-size:0.95rem;line-height:1.8;margin-bottom:14px;}
+  /* MISSION */
+  .mission-sec{padding:72px 7%;background:linear-gradient(135deg,#FFF8EE,#FFF3E0);}
+  .mission-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin-top:45px;}
+  .mission-card{background:white;border-radius:20px;padding:32px 26px;text-align:center;box-shadow:0 6px 25px rgba(0,0,0,0.05);border:1.5px solid rgba(255,107,0,0.1);transition:all 0.4s;position:relative;overflow:hidden;}
+  .mission-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),var(--gold));}
+  .mission-card:hover{transform:translateY(-8px);box-shadow:0 18px 45px rgba(255,107,0,0.18);}
+  .mc-icon{width:70px;height:70px;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:2rem;margin:0 auto 18px;box-shadow:0 8px 22px rgba(255,107,0,0.3);}
+  .mission-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:var(--dark);margin-bottom:10px;}
+  .mission-card p{font-size:0.87rem;color:#7D5A3C;line-height:1.65;}
+  /* WHY CHOOSE */
+  .why-sec{padding:72px 7%;}
+  .why-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:45px;}
+  .why-item{display:flex;align-items:flex-start;gap:16px;padding:22px;background:white;border-radius:16px;border:1.5px solid rgba(255,107,0,0.1);box-shadow:0 4px 18px rgba(0,0,0,0.04);transition:all 0.3s;}
+  .why-item:hover{transform:translateX(6px);box-shadow:0 8px 28px rgba(255,107,0,0.13);}
+  .wi-icon{width:50px;height:50px;background:linear-gradient(135deg,var(--saffron),var(--gold));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;box-shadow:0 4px 14px rgba(255,107,0,0.28);}
+  .wi-text h4{font-weight:700;color:var(--dark);margin-bottom:4px;font-size:0.92rem;}
+  .wi-text p{font-size:0.82rem;color:#7D5A3C;line-height:1.55;}
+  /* LOCATION */
+  .location-sec{padding:72px 7%;background:var(--dark);position:relative;overflow:hidden;}
+  .location-sec::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 50%,rgba(255,184,0,0.07) 0%,transparent 70%);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;position:relative;z-index:1;}
+  .loc-text h2{font-family:'Playfair Display',serif;font-size:2.4rem;font-weight:900;color:var(--cream);margin-bottom:16px;}
+  .loc-text h2 em{font-style:normal;color:var(--gold);}
+  .loc-text p{color:rgba(255,248,238,0.72);font-size:0.92rem;line-height:1.8;margin-bottom:20px;}
+  .loc-details{display:flex;flex-direction:column;gap:14px;}
+  .loc-item{display:flex;align-items:center;gap:12px;font-size:0.92rem;color:rgba(255,248,238,0.8);}
+  .loc-item a{color:var(--gold);text-decoration:none;}
+  .loc-item a:hover{color:var(--saffron);}
+  .loc-map{background:rgba(255,248,238,0.05);border:1px solid rgba(255,184,0,0.15);border-radius:20px;padding:40px;text-align:center;backdrop-filter:blur(10px);}
+  .map-pin{font-size:4rem;display:block;margin-bottom:18px;animation:pulse-pin 2s ease-in-out infinite;}
+  @keyframes pulse-pin{0%,100%{transform:scale(1)}50%{transform:scale(1.1) translateY(-6px)}}
+  .loc-map h3{font-family:'Yatra One',cursive;font-size:1.5rem;color:var(--gold);margin-bottom:10px;}
+  .loc-map p{color:rgba(255,248,238,0.72);font-size:0.9rem;line-height:1.6;}
+  .dir-btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--saffron),var(--deep-red));color:white;padding:12px 28px;border-radius:28px;text-decoration:none;font-weight:600;font-size:0.9rem;margin-top:18px;box-shadow:0 6px 22px rgba(255,107,0,0.35);transition:all 0.3s;}
+  .dir-btn:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(255,107,0,0.45);}
+  /* CTA */
+  .cta-band{padding:65px 7%;text-align:center;background:linear-gradient(135deg,var(--saffron),var(--deep-red));position:relative;overflow:hidden;}
+  .cta-band::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.1) 0%,transparent 60%);}
+  .cta-band *{position:relative;z-index:1;}
+  .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;color:white;margin-bottom:12px;}
+  .cta-band p{color:rgba(255,255,255,0.9);font-size:1rem;margin-bottom:30px;max-width:500px;margin-left:auto;margin-right:auto;}
+  /* FOOTER */
+  footer{background:linear-gradient(180deg,#1A0A00,#0D0500);padding:50px 7% 25px;}
+  .ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:30px;padding-bottom:30px;border-bottom:1px solid rgba(255,184,0,0.1);}
+  .ft-logo{font-family:'Yatra One',cursive;font-size:1.6rem;color:var(--gold);display:block;margin-bottom:8px;}
+  .ft-desc{font-size:0.88rem;color:rgba(255,248,238,0.58);line-height:1.72;margin-bottom:16px;}
+  .ft-ci{display:flex;align-items:center;gap:9px;font-size:0.88rem;color:rgba(255,248,238,0.68);margin-bottom:8px;}
+  .ft-ci a{color:var(--gold);text-decoration:none;}
+  .ft-col h4{font-weight:700;color:var(--cream);font-size:0.88rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+  .ft-col h4::after{content:'';display:block;height:2px;width:28px;background:linear-gradient(90deg,var(--saffron),var(--gold));margin-top:7px;border-radius:1px;}
+  .ft-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .ft-links a{text-decoration:none;color:rgba(255,248,238,0.58);font-size:0.88rem;transition:all 0.3s;}
+  .ft-links a:hover{color:var(--gold);padding-left:4px;}
+  .ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:0.82rem;color:rgba(255,248,238,0.38);}
+  .scroll-top{position:fixed;bottom:28px;right:28px;width:48px;height:48px;background:linear-gradient(135deg,var(--saffron),var(--deep-red));border:none;border-radius:50%;cursor:pointer;font-size:1.2rem;color:white;box-shadow:0 6px 25px rgba(255,107,0,0.42);transition:all 0.3s;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;z-index:999;}
+  .scroll-top.show{opacity:1;pointer-events:auto;}
+  @media(max-width:900px){.story-grid,.loc-grid{grid-template-columns:1fr;} .story-visual{margin-bottom:30px;} .mission-grid{grid-template-columns:1fr 1fr;} .why-grid{grid-template-columns:1fr;} .ft-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:600px){.mission-grid{grid-template-columns:1fr;} .ft-grid{grid-template-columns:1fr;} .page-hero h1{font-size:2.2rem;}}
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">GHATAGE TRADERS</a>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="products.html" class="nav-link">Products</a></li>
-                <li><a href="about.html" class="nav-link active">About</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<button class="scroll-top" id="stb">↑</button>
+<nav>
+  <a class="nav-logo" href="index.html">🪔 Ghatage <strong>Traders</strong></a>
+  <div class="hamburger" onclick="document.getElementById('nl').classList.toggle('open')"><span></span><span></span><span></span></div>
+  <ul class="nav-links" id="nl">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="about.html" class="active">About Us</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+<div class="festival-banner">
+  <div class="marquee-track">
+    <span>🌺 गुढीपाडव्याच्या हार्दिक शुभेच्छा!</span><span>🛍️ Festival Offers at Pachgaon, Kolhapur</span><span>📞 72764 49363</span><span>🌸 All Products Under One Roof</span>
+    <span>🌺 गुढीपाडव्याच्या हार्दिक शुभेच्छा!</span><span>🛍️ Festival Offers at Pachgaon, Kolhapur</span><span>📞 72764 49363</span><span>🌸 All Products Under One Roof</span>
+  </div>
+</div>
+<div class="page-hero">
+  <h1>About <em>Ghatage Traders</em></h1>
+  <p>Your trusted neighborhood shop in Kolhapur — serving families with quality and care for over a decade</p>
+</div>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section class="page-header">
-            <h1 class="page-title">About Ghatage Traders</h1>
-            <p class="page-subtitle">Your One-Stop Shop for Stationary, Toys, Gifts & More!</p>
-        </section>
+<!-- STORY -->
+<div class="story-grid">
+  <div class="story-visual">
+    <div class="story-card">
+      <span class="big">🏪</span>
+      <h3>घाटगे ट्रेडर्स</h3>
+      <p>Your friendly neighborhood store in Pachgaon, Kolhapur. Quality products, genuine service, and a warm welcome always.</p>
+    </div>
+  </div>
+  <div class="story-text">
+    <div class="tag">🏪 Our Story</div>
+    <h2>Who <em>We Are</em></h2>
+    <p>Ghatage Traders is your friendly neighborhood shop in Kolhapur, Maharashtra, specializing in stationary, toys, gifts, and household essentials. We've been serving students, parents, and families with quality products for years, building a reputation for reliability and excellent customer service.</p>
+    <p>Located at Bhogam Colony, Pachgaon, we are conveniently accessible for all our customers in the area. Whether you need school supplies for your children, puja items for festivals, or household essentials for daily use — we have it all!</p>
+    <p>This Gudi Padwa, we are proud to celebrate the Marathi New Year with our community. Visit us for special festival offers and experience the warmth of our store.</p>
+  </div>
+</div>
 
-        <section class="about-section">
-            <div class="about-content">
-                <div class="about-card">
-                    <div class="about-icon">🏪</div>
-                    <h2>Who We Are</h2>
-                    <p>Ghatage Traders is your friendly neighborhood shop in Kolhapur, Maharashtra, specializing in stationary, toys, gifts, and household essentials. We've been serving students, parents, and families with quality products for years, building a reputation for reliability and excellent customer service.</p>
-                </div>
+<!-- MISSION -->
+<div class="mission-sec">
+  <div style="text-align:center;margin-bottom:45px;">
+    <div class="tag">🎯 What Drives Us</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dark);margin-bottom:10px;">Our Mission & <em style="font-style:normal;color:var(--saffron)">Values</em></h2>
+    <p style="color:#7D5A3C;font-size:0.95rem;max-width:480px;margin:0 auto;">We strive to serve every customer with the best products at the best prices</p>
+  </div>
+  <div class="mission-grid">
+    <div class="mission-card">
+      <div class="mc-icon">🎯</div>
+      <h3>Our Mission</h3>
+      <p>To provide high-quality stationary, toys, gifts, and household products at competitive prices, meeting the diverse needs of students, parents, and families with exceptional service.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mc-icon">👁️</div>
+      <h3>Our Vision</h3>
+      <p>To be the most trusted and loved shop in Kolhapur — a place where every customer leaves happy, with quality products that enhance their daily life and celebrations.</p>
+    </div>
+    <div class="mission-card">
+      <div class="mc-icon">💎</div>
+      <h3>Our Values</h3>
+      <p>Honesty, quality, and community. We believe in building long-term relationships with our customers through genuine service and products that truly deliver value.</p>
+    </div>
+  </div>
+</div>
 
-                <div class="about-card">
-                    <div class="about-icon">🎯</div>
-                    <h2>Our Mission</h2>
-                    <p>Our mission is to provide high-quality stationary, toys, gifts, household products, and more at competitive prices. We strive to meet the diverse needs of students, parents, and families with exceptional service, genuine products, and a fun shopping experience that makes everyone smile!</p>
-                </div>
+<!-- WHY CHOOSE -->
+<div class="why-sec">
+  <div style="text-align:center;margin-bottom:45px;">
+    <div class="tag">🌟 Our Strengths</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:var(--dark);margin-bottom:10px;">Why Choose <em style="font-style:normal;color:var(--saffron)">Us?</em></h2>
+    <p style="color:#7D5A3C;font-size:0.95rem;max-width:480px;margin:0 auto;">Here's why thousands of families in Kolhapur trust Ghatage Traders</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-item"><div class="wi-icon">✅</div><div class="wi-text"><h4>Quality Products</h4><p>We source products from trusted manufacturers and brands, ensuring every item meets our quality standards.</p></div></div>
+    <div class="why-item"><div class="wi-icon">💰</div><div class="wi-text"><h4>Competitive Prices</h4><p>Get the best wholesale and retail prices in Kolhapur. We believe quality should be affordable for everyone.</p></div></div>
+    <div class="why-item"><div class="wi-icon">🏠</div><div class="wi-text"><h4>Everything Under One Roof</h4><p>From stationery to kitchen appliances — save time by finding all your needs in one convenient location.</p></div></div>
+    <div class="why-item"><div class="wi-icon">🤝</div><div class="wi-text"><h4>Excellent Service</h4><p>Our friendly and knowledgeable staff are always ready to help you find exactly what you're looking for.</p></div></div>
+    <div class="why-item"><div class="wi-icon">📍</div><div class="wi-text"><h4>Convenient Location</h4><p>Located in Bhogam Colony, Pachgaon — easily accessible for residents of Kolhapur and surrounding areas.</p></div></div>
+    <div class="why-item"><div class="wi-icon">🎁</div><div class="wi-text"><h4>Festival Specials</h4><p>Special offers and exclusive collections for Gudi Padwa, Diwali, and all major festivals throughout the year.</p></div></div>
+  </div>
+</div>
 
-                <div class="about-card">
-                    <div class="about-icon">✨</div>
-                    <h2>What We Offer</h2>
-                    <p>We specialize in multiple product categories to serve all your needs:</p>
-                    <ul class="about-list">
-                        <li><strong>📝 Stationary:</strong> Complete range of school supplies, notebooks, pens, bags, and study materials</li>
-                        <li><strong>🧸 Toys & Games:</strong> Fun toys, educational games, puzzles, and play items for children</li>
-                        <li><strong>🎁 Gifts:</strong> Perfect gifts for birthdays, festivals, and special occasions</li>
-                        <li><strong>🕉️ Puja Sahitya:</strong> Complete collection of religious items and traditional puja accessories</li>
-                        <li><strong>🏠 Household Items:</strong> A wide range of durable and colorful plastic products for everyday use</li>
-                        <li><strong>🍳 Kitchen Appliances:</strong> Modern kitchen appliances from leading brands</li>
-                        <li><strong>🌾 Atta Chakki:</strong> Automatic flour mills for fresh, healthy atta grinding</li>
-                    </ul>
-                </div>
+<!-- LOCATION -->
+<div class="location-sec">
+  <div class="loc-grid">
+    <div class="loc-text">
+      <div class="tag" style="background:rgba(255,184,0,0.12);border-color:rgba(255,184,0,0.25);color:var(--gold)">📍 Find Us</div>
+      <h2>Visit Our <em>Store</em></h2>
+      <p>We'd love to welcome you to our store in Pachgaon, Kolhapur. Come visit us and explore our huge collection in person!</p>
+      <div class="loc-details">
+        <div class="loc-item">📍 80/5, Bhogam Colony, Pachgaon, Kolhapur, Maharashtra</div>
+        <div class="loc-item">📞 <a href="tel:7276449363">72764 49363</a></div>
+        <div class="loc-item">🌐 <a href="https://ghatagetraders.in">ghatagetraders.in</a></div>
+        <div class="loc-item">⏰ Mon–Sun: 9:00 AM – 9:00 PM</div>
+      </div>
+    </div>
+    <div class="loc-map">
+      <span class="map-pin">📍</span>
+      <h3>Ghatage Traders</h3>
+      <p>80/5, Bhogam Colony<br>Pachgaon, Kolhapur<br>Maharashtra, India</p>
+      <a href="https://maps.google.com/?q=Pachgaon,Kolhapur" target="_blank" class="dir-btn">🗺️ Get Directions</a>
+    </div>
+  </div>
+</div>
 
-                <div class="about-card">
-                    <div class="about-icon">🤝</div>
-                    <h2>Why Choose Us</h2>
-                    <ul class="about-list">
-                        <li>Quality products from trusted manufacturers</li>
-                        <li>Competitive wholesale and retail prices</li>
-                        <li>Wide range of products under one roof</li>
-                        <li>Excellent customer service</li>
-                        <li>Convenient location in Kolhapur</li>
-                        <li>Years of experience in the business</li>
-                    </ul>
-                </div>
+<!-- CTA -->
+<div class="cta-band">
+  <h2>Come Visit Us! 🌺</h2>
+  <p>Experience the warmth of Ghatage Traders this Gudi Padwa. Special festival offers awaiting you!</p>
+  <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+    <a href="products.html" style="background:white;color:var(--saffron);padding:13px 32px;border-radius:32px;text-decoration:none;font-weight:700;font-size:0.95rem;display:inline-flex;align-items:center;gap:7px;">🛍️ View Products</a>
+    <a href="tel:7276449363" style="background:transparent;color:white;padding:13px 32px;border-radius:32px;text-decoration:none;font-weight:600;font-size:0.95rem;border:2px solid rgba(255,255,255,0.65);display:inline-flex;align-items:center;gap:7px;">📞 Call Now</a>
+  </div>
+</div>
 
-                <div class="about-card">
-                    <div class="about-icon">📍</div>
-                    <h2>Our Location</h2>
-                    <p>We are conveniently located at <strong>80/5, Bhogam Colony, Pachgaon, Kolhapur</strong>, making it easy for customers to visit us. Whether you're looking for household essentials or bulk purchases, we're here to serve you.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <span class="contact-icon">📞</span>
-                    <a href="tel:7276449363" class="contact-link">72764 49363</a>
-                </div>
-                <div class="contact-item">
-                    <span class="contact-icon">📍</span>
-                    <address class="address">80/5, Bhogam Colony, Pachgaon, Kolhapur</address>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+<footer>
+  <div class="ft-grid">
+    <div><span class="ft-logo">🪔 Ghatage Traders</span><p class="ft-desc">Your trusted one-stop shop in Kolhapur for all household needs.</p><div class="ft-ci">📞 <a href="tel:7276449363">72764 49363</a></div><div class="ft-ci">📍 80/5, Bhogam Colony, Pachgaon, Kolhapur</div></div>
+    <div class="ft-col"><h4>Quick Links</h4><ul class="ft-links"><li><a href="index.html">Home</a></li><li><a href="products.html">Products</a></li><li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+    <div class="ft-col"><h4>Products</h4><ul class="ft-links"><li><a href="products.html#stationary">Stationary</a></li><li><a href="products.html#toys">Toys</a></li><li><a href="products.html#gifts">Gifts</a></li><li><a href="products.html#puja">Puja Sahitya</a></li></ul></div>
+    <div class="ft-col"><h4>Festival</h4><ul class="ft-links"><li><a href="products.html#puja">🌺 Gudi Padwa Puja</a></li><li><a href="products.html#gifts">🎁 Gifts</a></li><li><a href="contact.html">💰 Wholesale</a></li></ul></div>
+  </div>
+  <div class="ft-bottom"><span>© 2025 Ghatage Traders. All rights reserved.</span><span>Made with ❤️ in Kolhapur</span></div>
+</footer>
+<script>
+  window.addEventListener('scroll',()=>document.getElementById('stb').classList.toggle('show',scrollY>350));
+  document.getElementById('stb').onclick=()=>window.scrollTo({top:0,behavior:'smooth'});
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.transform='translateY(0)';}});},{threshold:0.08});
+  document.querySelectorAll('.mission-card,.why-item,.loc-item').forEach((el,i)=>{el.style.opacity='0';el.style.transform='translateY(22px)';el.style.transition=`opacity 0.5s ease ${i*0.08}s,transform 0.5s ease ${i*0.08}s`;io.observe(el);});
+</script>
 </body>
 </html>
-
