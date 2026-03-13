@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Memory Card Game for Kids | Kids Zone</title>
+<meta name="description" content="Flip cards and find matching pairs. Free memory game for kids.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--saffron:#FF6B00;--gold:#FFB800;--cream:#FFF8EE;--dark:#1A0A00;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px;}
+  .kz-nav{width:100%;max-width:500px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .kz-nav a{text-decoration:none;padding:12px 20px;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;border-radius:24px;font-weight:600;min-height:48px;display:inline-flex;align-items:center;}
+  h1{font-size:1.6rem;color:var(--dark);margin-bottom:4px;}
+  .moves{font-size:1rem;color:#7D5A3C;margin-bottom:20px;}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:320px;}
+  .card{width:70px;height:70px;border-radius:16px;cursor:pointer;transition:transform 0.3s;position:relative;}
+  .card .face{position:absolute;inset:0;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:2rem;backface-visibility:hidden;}
+  .card .back{background:linear-gradient(135deg,#9B59B6,#6C3483);color:white;}
+  .card .front{background:white;transform:rotateY(180deg);}
+  .card.flipped .back{transform:rotateY(180deg);}
+  .card.flipped .front{transform:rotateY(0);}
+  .card.matched .front{background:#E8F5E9;}
+  .again{margin-top:24px;padding:14px 28px;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;border:none;border-radius:28px;font-size:1rem;font-weight:700;cursor:pointer;}
+</style>
+</head>
+<body>
+<nav class="kz-nav">
+  <a href="index.html">← Kids Zone</a>
+  <a href="../index.html">Store</a>
+</nav>
+
+<h1>🃏 Memory Game</h1>
+<p class="moves" id="moves">Moves: 0</p>
+
+<div class="grid" id="grid"></div>
+<p class="msg" id="msg" style="margin-top:20px;font-size:1.2rem;font-weight:700;"></p>
+<button type="button" class="again" id="again" style="display:none;">Play Again</button>
+
+<script>
+  const emojis=['🐶','🐱','🐼','🦊','🐻','🐸','🐵','🐔'];
+  let cards=[]; let flipped=[]; let moves=0; let lock=false;
+
+  function shuffle(a){ for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]; } return a; }
+
+  function build(){
+    const pairs=[...emojis,...emojis];
+    shuffle(pairs);
+    const grid=document.getElementById('grid');
+    grid.innerHTML='';
+    cards=pairs.map((emoji,i)=>({ emoji, id:i }));
+    cards.forEach((c,i)=>{
+      const el=document.createElement('button');
+      el.type='button';
+      el.className='card';
+      el.innerHTML=`<span class="face back">?</span><span class="face front">${c.emoji}</span>`;
+      el.addEventListener('click',()=>flip(i));
+      grid.appendChild(el);
+    });
+  }
+
+  function flip(i){
+    if(lock||flipped.length>=2||cards[i].flipped) return;
+    const el=grid.children[i];
+    el.classList.add('flipped');
+    cards[i].flipped=true;
+    flipped.push(i);
+    if(flipped.length===2){
+      moves++;
+      document.getElementById('moves').textContent='Moves: '+moves;
+      lock=true;
+      const [a,b]=flipped;
+      if(cards[a].emoji===cards[b].emoji){
+        grid.children[a].classList.add('matched');
+        grid.children[b].classList.add('matched');
+        flipped=[];
+        lock=false;
+        if(cards.every(c=>c.flipped)){
+          document.getElementById('msg').textContent='You did it! 🎉';
+          document.getElementById('again').style.display='inline-block';
+        }
+      } else {
+        setTimeout(()=>{
+          grid.children[a].classList.remove('flipped');
+          grid.children[b].classList.remove('flipped');
+          cards[a].flipped=false;
+          cards[b].flipped=false;
+          flipped=[];
+          lock=false;
+        },700);
+      }
+    }
+  }
+
+  document.getElementById('again').onclick=()=>{
+    flipped=[]; moves=0; lock=false;
+    document.getElementById('moves').textContent='Moves: 0';
+    document.getElementById('msg').textContent='';
+    document.getElementById('again').style.display='none';
+    build();
+  };
+
+  build();
+</script>
+</body>
+</html>

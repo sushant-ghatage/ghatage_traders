@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Math Game for Kids – Add & Subtract | Kids Zone</title>
+<meta name="description" content="Practice addition and subtraction. Fun math game for kids with instant feedback.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--saffron:#FF6B00;--gold:#FFB800;--cream:#FFF8EE;--green:#27AE60;--dark:#1A0A00;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px;}
+  .kz-nav{width:100%;max-width:500px;display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+  .kz-nav a{text-decoration:none;padding:12px 20px;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;border-radius:24px;font-weight:600;min-height:48px;display:inline-flex;align-items:center;}
+  h1{font-size:1.6rem;color:var(--dark);margin-bottom:8px;}
+  .score{font-size:1rem;color:#7D5A3C;margin-bottom:24px;}
+  .problem{font-size:2.2rem;font-weight:700;color:var(--dark);margin-bottom:20px;}
+  .answer-wrap{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;}
+  .answer-wrap input{width:120px;padding:18px;font-size:1.8rem;text-align:center;border:3px solid rgba(255,107,0,0.4);border-radius:16px;}
+  .answer-wrap button{min-height:56px;padding:14px 32px;font-size:1.2rem;font-weight:700;border-radius:28px;border:none;cursor:pointer;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;}
+  .feedback{font-size:1.4rem;font-weight:700;min-height:2rem;}
+  .feedback.correct{color:var(--green);}
+  .feedback.wrong{color:#e74c3c;}
+</style>
+</head>
+<body>
+<nav class="kz-nav">
+  <a href="index.html">← Kids Zone</a>
+  <a href="../index.html">Store</a>
+</nav>
+
+<h1>🔢 Math Game</h1>
+<p class="score" id="score">Score: 0</p>
+
+<p class="problem" id="problem">5 + 3 = ?</p>
+<div class="answer-wrap">
+  <input type="number" id="ans" placeholder="?" min="0" max="999" inputmode="numeric" aria-label="Your answer">
+  <button type="button" id="check">Check</button>
+</div>
+<p class="feedback" id="feedback"></p>
+
+<script>
+  let score=0;
+  let a=0,b=0,op='+',correct=0;
+
+  function rnd(m,M){ return Math.floor(Math.random()*(M-m+1))+m; }
+
+  function next(){
+    op=Math.random()<0.5?'+':'-';
+    if(op==='+'){ a=rnd(1,15); b=rnd(1,15); correct=a+b; }
+    else{ a=rnd(5,20); b=rnd(1,a); correct=a-b; }
+    document.getElementById('problem').textContent=a+' '+op+' '+b+' = ?';
+    document.getElementById('ans').value='';
+    document.getElementById('feedback').textContent='';
+    document.getElementById('ans').focus();
+  }
+
+  document.getElementById('check').onclick=()=>{
+    const val=parseInt(document.getElementById('ans').value,10);
+    const fb=document.getElementById('feedback');
+    if(isNaN(val)){ fb.textContent='Enter a number!'; fb.className='feedback wrong'; return; }
+    if(val===correct){
+      score++;
+      document.getElementById('score').textContent='Score: '+score;
+      fb.textContent='Correct! 👍';
+      fb.className='feedback correct';
+      setTimeout(next,1200);
+    } else {
+      fb.textContent='Try again! The answer was '+correct;
+      fb.className='feedback wrong';
+    }
+  };
+
+  document.getElementById('ans').onkeydown=e=>{ if(e.key==='Enter') document.getElementById('check').click(); };
+
+  next();
+</script>
+</body>
+</html>
