@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Tic-Tac-Toe Game for Kids | Kids Zone</title>
+<meta name="description" content="Play Tic-Tac-Toe online. Two players or play vs computer. Free game for kids.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--saffron:#FF6B00;--gold:#FFB800;--cream:#FFF8EE;--dark:#1A0A00;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Poppins',sans-serif;background:var(--cream);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:20px;}
+  .kz-nav{width:100%;max-width:600px;display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .kz-nav a{text-decoration:none;padding:12px 20px;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;border-radius:24px;font-weight:600;min-height:48px;display:inline-flex;align-items:center;}
+  h1{font-size:1.6rem;color:var(--dark);margin-bottom:8px;}
+  .turn{font-size:1.1rem;color:#7D5A3C;margin-bottom:24px;}
+  .board{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:320px;}
+  .cell{width:90px;height:90px;background:white;border:3px solid rgba(255,107,0,0.3);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:2.8rem;font-weight:700;cursor:pointer;transition:all 0.2s;}
+  .cell:hover{background:#FFF3E0;border-color:var(--saffron);}
+  .cell.x{color:#C0392B;}
+  .cell.o{color:#2980B9;}
+  .msg{font-size:1.3rem;font-weight:700;margin-top:24px;min-height:2rem;}
+  .msg.win{color:#27AE60;}
+  .msg.draw{color:#7D5A3C;}
+  .again{ margin-top:20px;padding:14px 28px;background:linear-gradient(135deg,var(--saffron),#C0392B);color:white;border:none;border-radius:28px;font-size:1rem;font-weight:700;cursor:pointer;display:none;}
+  .again.show{display:inline-block;}
+</style>
+</head>
+<body>
+<nav class="kz-nav">
+  <a href="index.html">← Kids Zone</a>
+  <a href="../index.html">Store</a>
+</nav>
+
+<h1>⭕ Tic-Tac-Toe</h1>
+<p class="turn" id="turn">Your turn (X)</p>
+
+<div class="board" id="board">
+  <button type="button" class="cell" data-i="0" aria-label="Cell 1"></button>
+  <button type="button" class="cell" data-i="1" aria-label="Cell 2"></button>
+  <button type="button" class="cell" data-i="2" aria-label="Cell 3"></button>
+  <button type="button" class="cell" data-i="3" aria-label="Cell 4"></button>
+  <button type="button" class="cell" data-i="4" aria-label="Cell 5"></button>
+  <button type="button" class="cell" data-i="5" aria-label="Cell 6"></button>
+  <button type="button" class="cell" data-i="6" aria-label="Cell 7"></button>
+  <button type="button" class="cell" data-i="7" aria-label="Cell 8"></button>
+  <button type="button" class="cell" data-i="8" aria-label="Cell 9"></button>
+</div>
+
+<p class="msg" id="msg"></p>
+<button type="button" class="again" id="again">Play Again</button>
+
+<script>
+  let board=[ '', '', '', '', '', '', '', '', '' ];
+  let current='X';
+  let over=false;
+
+  const turnEl=document.getElementById('turn');
+  const msgEl=document.getElementById('msg');
+  const againBtn=document.getElementById('again');
+  const cells=document.querySelectorAll('.cell');
+
+  const wins=[ [0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6] ];
+
+  function checkWin(){
+    for(const [a,b,c] of wins){
+      if(board[a]&&board[a]===board[b]&&board[b]===board[c]) return board[a];
+    }
+    return board.every(Boolean)?'draw':null;
+  }
+
+  function aiMove(){
+    const empty=board.map((v,i)=>v===''?i:null).filter(x=>x!=null);
+    const move=empty[Math.floor(Math.random()*empty.length)];
+    if(move!=null){ board[move]='O'; cells[move].textContent='O'; cells[move].classList.add('o'); }
+  }
+
+  function updateTurn(){
+    const result=checkWin();
+    if(result==='X'){ msgEl.textContent='You win!'; msgEl.className='msg win'; againBtn.classList.add('show'); over=true; return; }
+    if(result==='O'){ msgEl.textContent='Computer wins!'; msgEl.className='msg'; againBtn.classList.add('show'); over=true; return; }
+    if(result==='draw'){ msgEl.textContent="It's a draw!"; msgEl.className='msg draw'; againBtn.classList.add('show'); over=true; return; }
+    if(current==='X') turnEl.textContent='Your turn (X)';
+    else{ turnEl.textContent="Computer's turn (O)"; setTimeout(aiMove,400); setTimeout(()=>{ current='X'; turnEl.textContent='Your turn (X)'; const r=checkWin(); if(r==='O'){ msgEl.textContent='Computer wins!'; msgEl.className='msg'; againBtn.classList.add('show'); over=true; } else if(r==='draw'){ msgEl.textContent="It's a draw!"; msgEl.className='msg draw'; againBtn.classList.add('show'); over=true; }},500); }
+  }
+
+  cells.forEach(c=>{
+    c.addEventListener('click',()=>{
+      if(over||c.textContent) return;
+      const i=+c.dataset.i;
+      if(current!=='X') return;
+      board[i]='X';
+      c.textContent='X';
+      c.classList.add('x');
+      current='O';
+      updateTurn();
+    });
+  });
+
+  againBtn.addEventListener('click',()=>{
+    board=['','','','','','','','',''];
+    current='X';
+    over=false;
+    msgEl.textContent='';
+    msgEl.className='msg';
+    againBtn.classList.remove('show');
+    turnEl.textContent='Your turn (X)';
+    cells.forEach((c,i)=>{ c.textContent=''; c.classList.remove('x','o'); });
+  });
+</script>
+</body>
+</html>
